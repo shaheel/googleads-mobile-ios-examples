@@ -23,11 +23,20 @@ class ViewController: UIViewController, GADBannerViewDelegate {
   @IBOutlet weak var bannerView: GAMBannerView!
 
   override func viewDidLoad() {
-    super.viewDidLoad()
-    print("Google Mobile Ads SDK version: \(GADMobileAds.sharedInstance().sdkVersion)")
-    bannerView.adUnitID = "/6499/example/banner"
-    bannerView.rootViewController = self
-    bannerView.load(GAMRequest())
+      super.viewDidLoad()
+      print("Google Mobile Ads SDK version: \(GADMobileAds.sharedInstance().sdkVersion)")
+      bannerView.adUnitID = "/4312434/profpromomobileapp"
+      bannerView.rootViewController = self
+      bannerView.delegate = self
+      let adRequest = GAMRequest()
+      let parameters = [
+        "pos": "2420",
+        "env": "1",
+        "usp": "45"
+      ]
+      adRequest.customTargeting = parameters
+      bannerView.validAdSizes = [NSValueFromGADAdSize(GADAdSizeFromCGSize(CGSize(width: 300, height: 500)))]
+      bannerView.load(adRequest)
   }
 
   func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
